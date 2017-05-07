@@ -22,6 +22,7 @@ const appAssets = [
   'setup/plugins/gulp-preprocess.js',
   'setup/assets.js',
   '.editorconfig',
+  '.eslintignore',
   '.eslintrc.js',
   '.gitignore',
   'composer.json',

@@ -19,6 +19,7 @@ const ASSETS = {
   ],
   copyTpl: [
     '.editorconfig',
+    '.eslintignore',
     'composer.json',
     'README.md',
     'setup.json',
