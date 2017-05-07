@@ -1,0 +1,53 @@
+{
+  "name": "generator-nodena-api-php",
+  "version": "0.0.0",
+  "description": "Nodena API for PHP Yeoman generator",
+  "homepage": "https://github.com/ethancfchen/generator-nodena-api-php",
+  "author": {
+    "name": "ethancfchen",
+    "email": "ethan.cfchen@gmail.com",
+    "url": "https://github.com/ethancfchen"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "scaffold",
+    "back-end",
+    "rest",
+    "api",
+    "php",
+    "web",
+    "composer",
+    "gulp",
+    "browsersync",
+    "nodena",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
+    "eslint-config-xo-space": "^0.16.0",
+    "jest": "^19.0.2",
+    "jest-cli": "^19.0.2",
+    "nsp": "^2.6.3",
+    "yeoman-assert": "^3.0.0",
+    "yeoman-test": "^1.6.0"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "command-exists": "^1.2.2",
+    "generator-nodena": "^0.1.0",
+    "yeoman-generator": "^1.1.1",
+    "yosay": "^2.0.0"
+  },
+  "scripts": {
+    "prepublish": "nsp check",
+    "pretest": "eslint . --fix",
+    "test": "jest --config .jestrc"
+  },
+  "repository": "https://github.com/ethancfchen/generator-nodena-api-php.git",
+  "license": "MIT"
+}

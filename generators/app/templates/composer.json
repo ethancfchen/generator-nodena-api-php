@@ -1,0 +1,13 @@
+{
+    "name": "<%= appname %>",
+    "authors": [
+        {
+            "name": "<%= author.name %>",
+            "email": "<%= author.email %>"
+        }
+    ],
+    "require": {
+    },
+    "config": {
+    }
+}

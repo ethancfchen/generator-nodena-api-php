@@ -1,0 +1,20 @@
+{
+  "root": "api/",
+  "server": {
+    "port": 8888,
+    "https": false
+  },
+  "globals": {
+    "php": { }
+  },
+  "preprocess": {
+    "filter": {
+      "php": ["**/*.php"]
+    }
+  },
+  "copy": [ ],
+  "local": { },
+  "bypass": { },
+  "stage": { },
+  "live": { }
+}

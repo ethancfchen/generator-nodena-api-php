@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - stable
+  - 7
+  - 6
+after_script: cat ./coverage/lcov.info | coveralls
+deploy:
+  provider: npm
+  email: ethan.cfchen@gmail.com
+  api_key:
+    secure: nh/YsPOKbPngVYODAq9C+N6TNkcz5S9TxXwQclU7gmhzbdbi3OtcfzBD+b/QORLEEb8UebQdyRPycxgPsQXgcSLD1u4AzYzPFFIMp6tLfhrSQh1PeCAvrykZC6a5J7x/ZerfPPI5Kl3fdZio+n2wyZloB4E2aSqGZx398CmZ8zG8aET6R7yA76gXCgr/ppMIQFPrr57eR3EU7YxATdgz6C4Tkn1YnXi2g8Ikr88yZxOXPTAxkPvqIYgXVlOoftx2A0EQYoXcsSDLZxyPtMLODqxVes9l8i+TF8nZ+rfB6LFi3sI1rZzMYYA7Bo5Sh0r5E5V4+NPKWy0AoAZKqhvP8nvCcoLgAL6xfZa/1gtWrK/mbr1648MprlAs7HlMUGhtjFCKzdtQM8ZqATG/1NmOxJPBk1WMGD80S9ZxrJRFIW0hcXv4w1PLy5feX26DzJoKuI0bf7b4iRyKqH4/RzWKH8nhENz8RoTjGLZfYd24d8vWmY55tfpVaGEnT1nTys7eKlyFg01giRjZjRmluxD0TAepzBOjMYJGw2NqV9T5HdIwHQLUa8wcKlrEpTauLI0+Ya6woYjz2BHegkdgJBS6dIgyB07KXEflzoiutHi14BlnR5xekbKn/L4/WrlXGB+1KmKU08s1OcMSuJzsJMkNvXW09k8Khtxx+v6LxGAOLLI=
+  on:
+    tags: true
+    repo: ethancfchen/generator-nodena-api-php
