@@ -14,12 +14,12 @@ const ASSETS = {
     dest: 'gulp-tasks',
   }],
   copyTmp: [
-    '.gitignore',
+    '.eslintignore',
     '.eslintrc.js',
+    '.gitignore',
   ],
   copyTpl: [
     '.editorconfig',
-    '.eslintignore',
     'composer.json',
     'README.md',
     'setup.json',

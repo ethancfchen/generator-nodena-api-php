@@ -30,8 +30,9 @@ const appAssets = [
   'gulptasks.js',
 ];
 const appOnlyTemplates = [
-  '_tmp_.gitignore',
+  '_tmp_.eslintignore',
   '_tmp_.eslintrc.js',
+  '_tmp_.gitignore',
 ];
 
 describe('generator-nodena-api-php:app', () => {
