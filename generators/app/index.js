@@ -65,7 +65,7 @@ function copyAllTplFiles(generator, template) {
 
 module.exports = class extends Generator {
   initializing() {
-    this.composeWith('bombyx:app');
+    this.composeWith('nodena:app');
   }
 
   writing() {

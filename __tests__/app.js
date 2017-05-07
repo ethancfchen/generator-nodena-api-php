@@ -34,10 +34,10 @@ const appOnlyTemplates = [
   '_tmp_.eslintrc.js',
 ];
 
-describe('generator-bombyx-api-php:app', () => {
+describe('generator-nodena-api-php:app', () => {
   beforeAll(() => {
     const deps = [
-      [helpers.createDummyGenerator(), 'bombyx:app'],
+      [helpers.createDummyGenerator(), 'nodena:app'],
     ];
     return helpers
       .run(path.join(__dirname, '../generators/app'))
