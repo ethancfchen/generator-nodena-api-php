@@ -3,7 +3,7 @@
     "postinstall": "composer install"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.7",
+    "browser-sync": "^2.18.12",
     "gulp-connect-php": "^1.0.0",
     "gulp-filter": "^5.0.0",
     "gulp-if": "^2.0.2",
