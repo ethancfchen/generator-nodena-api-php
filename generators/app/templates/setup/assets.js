@@ -1,6 +1,4 @@
-const _ = require('lodash');
-
-const baseAssets = require('./base/assets');
+const BaseAssets = require('./base/assets');
 
 const COMPOSER_LOCK = 'composer.lock';
 const SRC = {
@@ -8,15 +6,19 @@ const SRC = {
 };
 const VENDOR = 'vendor/';
 
-module.exports = function(config) {
-  const assets = baseAssets(config);
+class Assets extends BaseAssets {
+  constructor(options) {
+    super(options);
 
-  return _.merge(assets, {
-    composerLock: COMPOSER_LOCK,
-    src: SRC,
-    vendor: VENDOR,
-    watch: {
-      php: assets.base.src + '**/*',
-    },
-  });
-};
+    const baseSrc = this.base.src;
+
+    this.composerLock = COMPOSER_LOCK;
+    this.src = SRC;
+    this.vendor = VENDOR;
+    this.watch = {
+      php: baseSrc + '**/*',
+    };
+  }
+}
+
+module.exports = Assets;

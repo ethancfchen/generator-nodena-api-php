@@ -2,40 +2,35 @@
  * Plugin Setup: Browsersync
  *
  * @module setup/plugins/browser-sync
- */
-
-/**
- * Plugin Setup: Browsersync
- *
  * @example {@lang javascript}
- * var browserSync = require('./plugins/browser-sync')(config, assets);
+ * const PluginBrowserSync = require('./plugins/browser-sync');
+ * const pluginBrowserSync = new PluginBrowserSync(options, assets);
  *
  * @see {@link https://www.browsersync.io/|Official Site}
  * @see {@link https://www.browsersync.io/docs/options/|Avaliable Options}
  * @see {@link https://github.com/browsersync/browser-sync/|Github}
- * @param  {object} config config Project configurations.
- * @param  {object} assets assets Project assets.
- * @return {object}        Plugins options.
  */
-module.exports = function(config, assets) {
-  const argv = config.argv || {};
-  const pref = assets.getPreference();
+class PluginBrowserSync {
+  constructor(options, assets) {
+    const argv = options.argv || {};
+    const pref = assets.getPreference();
 
-  const server = pref.server || {};
-  const port = argv.port || server.port;
-  const isHttps = server.https;
+    const server = pref.server || {};
+    const port = argv.port || server.port;
+    const isHttps = server.https;
 
-  const options = {
-    port,
-    https: isHttps,
-    ui: {
+    this.port = port;
+    this.https = isHttps;
+    this.ui = {
       port: port + 2,
-    },
-    open: false,
-  };
-  if (!port) {
-    delete options.port;
-    delete options.ui.port;
+    };
+    this.open = false;
+
+    if (!port) {
+      delete this.port;
+      delete this.ui.port;
+    }
   }
-  return options;
-};
+}
+
+module.exports = PluginBrowserSync;

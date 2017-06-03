@@ -3,7 +3,7 @@ const $ = require('gulp-load-plugins')();
 
 const _ = require('lodash');
 
-const projectSetup = require('setup/setup');
+const Setup = require('setup/setup');
 
 function getGlobals(pref, env) {
   const key = 'php';
@@ -16,29 +16,29 @@ module.exports = function() {
   const env = this.opts.env;
   const browserSync = this.opts.browserSync;
 
-  const setup = projectSetup(env);
+  const setup = new Setup(env);
   const assets = setup.assets;
   const pref = setup.getPreference();
 
   const src = assets.src.php;
   const dest = pref.root;
 
-  const optionsPreprocess = setup.plugins.gulpPreprocess;
+  const preprocessOpts = setup.plugins.gulpPreprocess;
 
   const phpData = getGlobals(pref, env);
   const isPreprocess = !_.isEmpty(phpData);
-  const filterOptions = optionsPreprocess.filter.php;
-  const $filter = filterOptions ?
-    $.filter(filterOptions, {restore: true}) :
+  const filterOpts = preprocessOpts.filter.php;
+  const $filter = filterOpts ?
+    $.filter(filterOpts, {restore: true}) :
     $.util.noop();
-  const $filterRestore = filterOptions ? $filter.restore : $.util.noop();
+  const $filterRestore = filterOpts ? $filter.restore : $.util.noop();
 
-  optionsPreprocess.context = _.merge(optionsPreprocess.context, phpData);
+  preprocessOpts.context = _.merge(preprocessOpts.context, phpData);
 
   return gulp
     .src(src, {cwd: assets.base.src})
     .pipe($.if(isPreprocess, $filter))
-    .pipe($.if(isPreprocess, $.preprocess(optionsPreprocess)))
+    .pipe($.if(isPreprocess, $.preprocess(preprocessOpts)))
     .pipe($.if(isPreprocess, $filterRestore))
     .pipe(gulp.dest(dest, {cwd: assets.dist}))
     .pipe(browserSync.stream());

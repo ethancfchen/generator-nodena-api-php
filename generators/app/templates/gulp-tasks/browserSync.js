@@ -1,17 +1,17 @@
 const $ = require('gulp-load-plugins')();
 
-const projectSetup = require('setup/setup');
+const Setup = require('setup/setup');
 
 module.exports = function() {
   const env = this.opts.env;
   const browserSync = this.opts.browserSync;
 
-  const setup = projectSetup(env);
+  const setup = new Setup(env);
 
-  const optionsBrowserSync = setup.plugins.browserSync;
-  const optionsConnectPhp = setup.plugins.gulpConnectPhp;
+  const browserSyncOpts = setup.plugins.browserSync;
+  const connectPhpOpts = setup.plugins.gulpConnectPhp;
 
-  optionsBrowserSync.proxy = '0.0.0.0:' + optionsConnectPhp.port;
-  $.connectPhp.server(optionsConnectPhp);
-  browserSync.init(optionsBrowserSync);
+  browserSyncOpts.proxy = '0.0.0.0:' + connectPhpOpts.port;
+  $.connectPhp.server(connectPhpOpts);
+  browserSync.init(browserSyncOpts);
 };

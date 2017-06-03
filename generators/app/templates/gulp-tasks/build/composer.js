@@ -1,7 +1,7 @@
 const Q = require('q');
 const childProcess = require('child_process');
 
-const projectSetup = require('setup/setup');
+const Setup = require('setup/setup');
 
 function exec(command) {
   const run = childProcess.exec;
@@ -18,29 +18,26 @@ function exec(command) {
 module.exports = function(cb) {
   const env = this.opts.env;
 
-  const setup = projectSetup(env);
+  const setup = new Setup(env);
   const assets = setup.assets;
   const pref = setup.getPreference();
 
-  const optionsExec = setup.plugins.exec;
+  const execOpts = setup.plugins.exec;
 
   const vendorDir = assets.dist + pref.root + assets.vendor;
-  const installOptions = setup.isOnline ? ['--no-dev', '-o'] : ['--dev'];
 
   const cmd = 'composer';
   const cmdConfig = [cmd, 'config', 'vendor-dir', vendorDir].join(' ');
-  const cmdInstall = [cmd, 'install'].concat(installOptions).join(' ');
+  const cmdInstall = [cmd, 'install']
+    .concat(setup.isOnline ? ['--no-dev', '-o'] : ['--dev']).join(' ');
   const cmdUnset = [cmd, 'config', '--unset', 'vendor-dir'].join(' ');
-  const execOptions = {
-    maxBuffer: optionsExec.maxBuffer,
-  };
 
-  exec(cmdConfig, execOptions)
+  exec(cmdConfig, execOpts)
     .then(() => {
-      return exec(cmdInstall, execOptions);
+      return exec(cmdInstall, execOpts);
     })
     .then(() => {
-      return exec(cmdUnset, execOptions);
+      return exec(cmdUnset, execOpts);
     })
     .fail((stderr) => {
       cb(stderr);
