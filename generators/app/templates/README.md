@@ -86,6 +86,41 @@ Example:
 }
 ```
 
+### proxy
+
+Default: `null`
+
+Assign proxy to [BrowserSync][BrowserSync].
+
+Options:
+
+*   `uri` - The URI path matching for proxy.
+*   `options` - The proxy options. See [options of proxy][node-http-proxy#options].
+
+Example:
+
+```json
+{
+  "proxy": [{
+    "uri": "/api",
+    "options": {
+      "target": "https://mydomain.com",
+      "changeOrigin": true,
+      "secure": false
+    }
+  }, {
+    "uri": "/upload",
+    "options": {
+      "target": "http://mydomain.com",
+      "changeOrigin": true
+    }
+  }]
+}
+```
+
+All requests on `/api` will proxy to `https://mydomain.com/api`,
+and `/upload` will proxy to `https://mydomain.com/upload`
+
 ### globals
 
 Default: `null`
@@ -275,5 +310,6 @@ gulp -p 8899
 [gulp-filter]: https://github.com/sindresorhus/gulp-filter/
 [gulp-preprocess]: https://github.com/jas/gulp-preprocess/
 [gulp-task-loader]: https://github.com/hontas/gulp-task-loader/
+[node-http-proxy#options]: https://github.com/nodejitsu/node-http-proxy#options
 [npm-url]: https://npmjs.org/package/generator-nodena-api-php/
 [semver]: https://github.com/npm/node-semver/

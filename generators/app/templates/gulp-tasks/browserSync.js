@@ -1,4 +1,7 @@
+const _ = require('lodash');
+
 const $ = require('gulp-load-plugins')();
+const httpProxy = require('http-proxy-middleware');
 
 const Setup = require('setup/setup');
 
@@ -10,8 +13,18 @@ module.exports = function() {
 
   const browserSyncOpts = setup.plugins.browserSync;
   const connectPhpOpts = setup.plugins.gulpConnectPhp;
+  const proxyOpts = setup.plugins.httpProxyMiddleware;
 
-  browserSyncOpts.proxy = '0.0.0.0:' + connectPhpOpts.port;
+  const middleware = [];
+
+  _(proxyOpts.proxies).forEach((proxy) => {
+    middleware.push(httpProxy(proxy.uri, proxy.options));
+  });
+
+  browserSyncOpts.proxy = {
+    target: '0.0.0.0:' + connectPhpOpts.port,
+    middleware,
+  };
   $.connectPhp.server(connectPhpOpts);
   browserSync.init(browserSyncOpts);
 };
