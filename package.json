@@ -1,6 +1,6 @@
 {
   "name": "generator-nodena-api-php",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Nodena API (PHP) Yeoman generator",
   "homepage": "https://github.com/ethancfchen/generator-nodena-api-php",
   "author": {
