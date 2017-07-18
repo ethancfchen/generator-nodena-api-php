@@ -15,7 +15,7 @@ function exec(command) {
   return defer.promise;
 }
 
-module.exports = function(cb) {
+module.exports = function(taskCallback) {
   const env = this.opts.env;
 
   const setup = new Setup(env);
@@ -40,8 +40,8 @@ module.exports = function(cb) {
       return exec(cmdUnset, execOpts);
     })
     .fail((stderr) => {
-      cb(stderr);
+      taskCallback(stderr);
       return Q.defer().promise;
     })
-    .done(cb);
+    .done(taskCallback);
 };
