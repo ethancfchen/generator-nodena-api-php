@@ -33,14 +33,13 @@
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "nsp": "^2.6.3",
-    "pump": "^1.0.2",
     "yeoman-assert": "^3.0.0",
     "yeoman-test": "^1.7.0"
   },
   "dependencies": {
     "chalk": "^2.0.1",
     "command-exists": "^1.2.2",
-    "generator-nodena": "^0.2.2",
+    "generator-nodena": "^0.3.0",
     "yeoman-generator": "^1.1.1",
     "yosay": "^2.0.0"
   },
