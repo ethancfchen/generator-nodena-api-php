@@ -3,13 +3,10 @@ const _ = require('lodash');
 const $ = require('gulp-load-plugins')();
 const httpProxy = require('http-proxy-middleware');
 
-const Setup = require('setup/setup');
+const setup = require('setup/setup');
 
 module.exports = function() {
-  const env = this.opts.env;
   const browserSync = this.opts.browserSync;
-
-  const setup = new Setup(env);
 
   const browserSyncOpts = setup.plugins.browserSync;
   const connectPhpOpts = setup.plugins.gulpConnectPhp;

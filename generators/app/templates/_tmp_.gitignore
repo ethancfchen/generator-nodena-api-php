@@ -6,8 +6,9 @@ npm-debug.log*
 # Dependency directory
 node_modules
 
-# Distination
-dist
+# Build
+build
+!gulp-tasks/build
 
 # Online
 online/patches

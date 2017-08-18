@@ -1,3 +1,6 @@
+const config = require('config');
+const argv = require('../argv');
+
 /**
  * Plugin Setup: gulp-connect-php
  *
@@ -10,15 +13,12 @@
  * @see {@link https://github.com/micahblu/gulp-connect-php/|Github}
  */
 class PluginGulpConnectPhp {
-  constructor(options, assets) {
-    const argv = options.argv || {};
-    const pref = assets.getPreference();
-
-    const server = pref.server || {};
+  constructor() {
+    const server = config.server || {};
     const port = argv.port || server.port;
 
     this.port = port + 1;
-    this.base = assets.base.temp;
+    this.base = config.assets.build;
   }
 }
 

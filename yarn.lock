@@ -1101,12 +1101,13 @@ generate-object-property@^1.1.0:
   dependencies:
     is-property "^1.0.0"
 
-generator-nodena@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/generator-nodena/-/generator-nodena-0.3.0.tgz#9a652c4cfca34554e6d103a38f98999367b6395a"
+generator-nodena@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/generator-nodena/-/generator-nodena-0.4.1.tgz#04ec3a452e48ddc264598f1eacc94b76150882a0"
   dependencies:
     chalk "^2.0.1"
     command-exists "^1.2.2"
+    sort-package-json "^1.7.0"
     yeoman-generator "^1.1.1"
     yosay "^2.0.0"
 
@@ -2802,6 +2803,16 @@ sntp@1.x.x:
   resolved "https://registry.yarnpkg.com/sntp/-/sntp-1.0.9.tgz#6541184cc90aeea6c6e7b35e2659082443c66198"
   dependencies:
     hoek "2.x.x"
+
+sort-object-keys@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/sort-object-keys/-/sort-object-keys-1.1.2.tgz#d3a6c48dc2ac97e6bc94367696e03f6d09d37952"
+
+sort-package-json@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-1.7.0.tgz#13b362ff6400c5b4eaa9ba220f9ea7c3d6644b5f"
+  dependencies:
+    sort-object-keys "^1.1.1"
 
 source-map-support@^0.4.2:
   version "0.4.15"

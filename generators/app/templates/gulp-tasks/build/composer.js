@@ -1,7 +1,9 @@
-const Q = require('q');
 const childProcess = require('child_process');
+const path = require('path');
 
-const Setup = require('setup/setup');
+const Q = require('q');
+
+const setup = require('setup/setup');
 
 function exec(command) {
   const run = childProcess.exec;
@@ -16,15 +18,11 @@ function exec(command) {
 }
 
 module.exports = function(taskCallback) {
-  const env = this.opts.env;
-
-  const setup = new Setup(env);
   const assets = setup.assets;
-  const pref = setup.getPreference();
 
   const execOpts = setup.plugins.exec;
 
-  const vendorDir = assets.dist + pref.root + assets.vendor;
+  const vendorDir = path.join(assets.build, setup.root, assets.vendor);
 
   const cmd = 'composer';
   const cmdConfig = [cmd, 'config', 'vendor-dir', vendorDir].join(' ');
