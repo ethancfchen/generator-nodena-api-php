@@ -3,10 +3,14 @@ const yosay = require('yosay');
 
 const _ = require('lodash');
 const commandExists = require('command-exists');
+const sortPackageJson = require('sort-package-json');
 
 const ASSETS = {
   package: 'package.json',
   copy: [{
+    src: 'config/**/*',
+    dest: 'config',
+  }, {
     src: 'setup/**/*',
     dest: 'setup',
   }, {
@@ -22,7 +26,6 @@ const ASSETS = {
     '.editorconfig',
     'composer.json',
     'README.md',
-    'setup.json',
     'gulptasks.js',
   ],
 };
@@ -32,7 +35,8 @@ function extendPackage(generator) {
   const extPackageFile = generator.templatePath(ASSETS.package);
   const manifest = generator.fs.readJSON(packageFile, {});
   const extManifest = generator.fs.readJSON(extPackageFile, {});
-  generator.fs.writeJSON(packageFile, _.merge(manifest, extManifest));
+  const merged = _.merge(manifest, extManifest);
+  generator.fs.writeJSON(packageFile, sortPackageJson(merged));
 }
 
 function copyAllFiles(generator) {

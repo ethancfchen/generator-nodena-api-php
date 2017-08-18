@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "postinstall": "composer install"
+    "postinstall": "composer install",
+    "start": "NODE_ENV=development gulp"
   },
   "devDependencies": {
     "browser-sync": "^2.18.12",
