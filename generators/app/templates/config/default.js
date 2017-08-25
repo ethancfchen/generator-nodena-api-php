@@ -2,6 +2,7 @@ const path = require('path');
 const defer = require('config/defer').deferConfig;
 
 const NODE_ENV = process.env.NODE_ENV;
+const NODE_APP_INSTANCE = process.env.NODE_APP_INSTANCE;
 const argv = require('../setup/argv');
 
 module.exports = {
@@ -19,6 +20,7 @@ module.exports = {
   /* Helper */
 
   env: NODE_ENV,
+  appInstance: NODE_APP_INSTANCE,
   isOnline: false,
   isVerbose: argv.verbose,
 
@@ -28,16 +30,21 @@ module.exports = {
     base: {
       src: 'src',
       build: 'build',
-      online: 'online',
+      dist: 'dist',
       res: 'res',
     },
     src: {
       php: ['**/*'],
     },
+    vendor: 'vendor',
     build: defer((config) => {
       return config.assets.base.build;
     }),
-    vendor: 'vendor',
+    dist: {
+      patches: defer((config) => {
+        return path.join(config.assets.base.dist, 'patches');
+      }),
+    },
     dest: {
       docs: '**/*.html',
       styles: 'css',
@@ -54,9 +61,5 @@ module.exports = {
     composerLock: 'composer.lock',
     manifest: 'package.json',
     readme: 'README.md',
-    changelog: 'CHANGELOG.md',
-    template: {
-      changelog: path.join('res', 'changelog.template.md'),
-    },
   },
 };

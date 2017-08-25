@@ -5,10 +5,11 @@ npm-debug.log*
 
 # Dependency directory
 node_modules
+bower_components
 
 # Build
 build
 !gulp-tasks/build
 
-# Online
-online/patches
+# Distribution
+dist
