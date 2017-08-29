@@ -2,7 +2,21 @@
   "name": "generator-nodena-api-php",
   "version": "0.5.0",
   "description": "Nodena API (PHP) Yeoman generator",
+  "keywords": [
+    "api",
+    "back-end",
+    "browsersync",
+    "composer",
+    "gulp",
+    "nodena",
+    "php",
+    "rest",
+    "scaffold",
+    "web",
+    "yeoman-generator"
+  ],
   "homepage": "https://github.com/ethancfchen/generator-nodena-api-php",
+  "license": "MIT",
   "author": {
     "name": "ethancfchen",
     "email": "ethan.cfchen@gmail.com",
@@ -12,19 +26,19 @@
     "generators"
   ],
   "main": "generators/index.js",
-  "keywords": [
-    "scaffold",
-    "back-end",
-    "rest",
-    "api",
-    "php",
-    "web",
-    "composer",
-    "gulp",
-    "browsersync",
-    "nodena",
-    "yeoman-generator"
-  ],
+  "repository": "https://github.com/ethancfchen/generator-nodena-api-php.git",
+  "scripts": {
+    "prepublish": "nsp check",
+    "pretest": "eslint . --fix",
+    "test": "jest --config .jestrc --coverage"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "command-exists": "^1.2.2",
+    "generator-nodena": "^0.2.1",
+    "yeoman-generator": "^1.1.1",
+    "yosay": "^2.0.0"
+  },
   "devDependencies": {
     "coveralls": "^2.13.1",
     "eslint": "^4.5.0",
@@ -34,22 +48,6 @@
     "jest-cli": "^20.0.4",
     "nsp": "^2.7.0",
     "yeoman-assert": "^3.0.0",
-    "yeoman-test": "^1.7.0"
-  },
-  "dependencies": {
-    "chalk": "^2.1.0",
-    "command-exists": "^1.2.2",
-    "generator-nodena": "^0.5.0",
-    "sort-package-json": "^1.7.0",
-    "yeoman-generator": "^1.1.1",
-    "yosay": "^2.0.1"
-  },
-  "scripts": {
-    "prepublish": "nsp check",
-    "pretest": "eslint . --fix",
-    "test": "jest --config .jestrc.js --coverage",
-    "release": "git push && git push --tags"
-  },
-  "repository": "https://github.com/ethancfchen/generator-nodena-api-php.git",
-  "license": "MIT"
+    "yeoman-test": "^1.6.0"
+  }
 }
