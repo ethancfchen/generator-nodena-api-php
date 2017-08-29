@@ -29,6 +29,7 @@
   "repository": "https://github.com/ethancfchen/generator-nodena-api-php.git",
   "scripts": {
     "prepublish": "nsp check",
+    "release": "git push && git push --tags",
     "pretest": "eslint . --fix",
     "test": "jest --config .jestrc --coverage"
   },
