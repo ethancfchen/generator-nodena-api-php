@@ -13,7 +13,7 @@ module.exports = {
   assets: {
     build: defer((config) => {
       return path.join(
-        config.assets.base.online,
+        config.assets.base.dist,
         config.env
       );
     }),
