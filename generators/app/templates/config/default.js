@@ -40,11 +40,6 @@ module.exports = {
     build: defer((config) => {
       return config.assets.base.build;
     }),
-    dist: {
-      patches: defer((config) => {
-        return path.join(config.assets.base.dist, 'patches');
-      }),
-    },
     dest: {
       docs: '**/*.html',
       styles: 'css',
