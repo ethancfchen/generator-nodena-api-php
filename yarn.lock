@@ -1102,9 +1102,9 @@ generate-object-property@^1.1.0:
   dependencies:
     is-property "^1.0.0"
 
-generator-nodena@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/generator-nodena/-/generator-nodena-0.5.0.tgz#d1037675f0a7f96b73a7be2115fd7d00da4c2394"
+generator-nodena@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/generator-nodena/-/generator-nodena-0.5.1.tgz#e4f72b0765222c76df3a7530d39b99a4e193242a"
   dependencies:
     chalk "^2.0.1"
     command-exists "^1.2.2"
@@ -3408,7 +3408,7 @@ yeoman-generator@^1.1.0, yeoman-generator@^1.1.1:
     user-home "^2.0.0"
     yeoman-environment "^1.1.0"
 
-yeoman-test@^1.7.0:
+yeoman-test@^1.6.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/yeoman-test/-/yeoman-test-1.7.0.tgz#3edbee64591f2597027a5b42b1dc058251adc9fe"
   dependencies:
@@ -3424,20 +3424,6 @@ yeoman-test@^1.7.0:
 yosay@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/yosay/-/yosay-2.0.0.tgz#0f3d2bb01f7f25362c127212f53c1572906333fe"
-  dependencies:
-    ansi-regex "^2.0.0"
-    ansi-styles "^3.0.0"
-    chalk "^1.0.0"
-    cli-boxes "^1.0.0"
-    pad-component "0.0.1"
-    string-width "^2.0.0"
-    strip-ansi "^3.0.0"
-    taketalk "^1.0.0"
-    wrap-ansi "^2.0.0"
-
-yosay@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/yosay/-/yosay-2.0.1.tgz#078167f0365732e5c82d3f64633f9cd3a0526d2f"
   dependencies:
     ansi-regex "^2.0.0"
     ansi-styles "^3.0.0"
