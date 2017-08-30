@@ -52,6 +52,14 @@ module.exports = {
         return path.join(config.assets.base.src, '**/*');
       }),
     },
+    jsdoc: {
+      files: [
+        './*.js',
+        './setup/**/*.js',
+        './res/client/js/**/*.js',
+      ],
+      dest: 'doc',
+    },
 
     composerLock: 'composer.lock',
     manifest: 'package.json',
