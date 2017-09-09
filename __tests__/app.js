@@ -24,6 +24,7 @@ const appAssets = [
   '.gitignore',
   'composer.json',
   'gulptasks.js',
+  'php.ini',
 ];
 const appOnlyTemplates = [
   '_tmp_.eslintignore',

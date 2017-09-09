@@ -19,6 +19,7 @@ class PluginGulpConnectPhp {
 
     this.port = port + 1;
     this.base = config.assets.build;
+    this.ini = config.assets.phpIni;
   }
 }
 

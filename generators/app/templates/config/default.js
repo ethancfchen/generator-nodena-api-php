@@ -40,13 +40,6 @@ module.exports = {
     build: defer((config) => {
       return config.assets.base.build;
     }),
-    dest: {
-      docs: '**/*.html',
-      styles: 'css',
-      scripts: 'js',
-      images: 'img',
-      index: 'index.html',
-    },
     watch: {
       php: defer((config) => {
         return path.join(config.assets.base.src, '**/*');
@@ -60,6 +53,7 @@ module.exports = {
       ],
       dest: 'doc',
     },
+    phpIni: './php.ini',
 
     composerLock: 'composer.lock',
     manifest: 'package.json',

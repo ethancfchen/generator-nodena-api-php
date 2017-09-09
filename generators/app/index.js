@@ -25,6 +25,7 @@ const ASSETS = {
   copyTpl: [
     '.editorconfig',
     'composer.json',
+    'php.ini',
     'README.md',
     'gulptasks.js',
   ],
