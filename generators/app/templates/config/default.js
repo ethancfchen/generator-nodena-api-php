@@ -15,6 +15,11 @@ module.exports = {
   globals: {
     php: {},
   },
+  preprocess: {
+    filter: {
+      php: defer((config) => config.assets.src.php),
+    },
+  },
   copy: [],
 
   /* Helper */
