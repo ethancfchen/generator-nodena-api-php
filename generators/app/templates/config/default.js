@@ -17,7 +17,7 @@ module.exports = {
   },
   preprocess: {
     filter: {
-      php: defer((config) => config.assets.src.php),
+      php: ['**/*.php'],
     },
   },
   copy: [],
