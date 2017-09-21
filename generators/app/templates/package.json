@@ -4,15 +4,15 @@
     "start": "NODE_ENV=development gulp"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.12",
+    "browser-sync": "^2.18.13",
     "chalk": "^2.1.0",
-    "gulp-connect-php": "^1.0.0",
-    "gulp-filter": "^5.0.0",
+    "gulp-connect-php": "^1.0.1",
+    "gulp-filter": "^5.0.1",
     "gulp-if": "^2.0.2",
     "gulp-plumber": "^1.1.0",
     "gulp-preprocess": "^2.0.0",
     "gulp-util": "^3.0.8",
-    "http-proxy-middleware": "^0.17.2",
-    "q": "^1.4.1"
+    "http-proxy-middleware": "^0.17.4",
+    "q": "^1.5.0"
   }
 }
