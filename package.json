@@ -31,7 +31,7 @@
     "prepublish": "nsp check",
     "release": "git push && git push --tags",
     "pretest": "eslint . --fix",
-    "test": "jest --config .jestrc --coverage"
+    "test": "jest --config .jestrc.js --coverage"
   },
   "dependencies": {
     "chalk": "^2.1.0",
