@@ -1,23 +1,21 @@
 const childProcess = require('child_process');
 const path = require('path');
 
-const Q = require('q');
-
 const setup = require('setup/setup');
 
 function exec(command) {
   const run = childProcess.exec;
-  const defer = Q.defer();
-  run(command, (err, stdout, stderr) => {
-    if (err) {
-      return defer.reject(stderr);
-    }
-    return defer.resolve(stdout);
+  return new Promise((resolve, reject) => {
+    run(command, (error, stdout, stderr) => {
+      if (error) {
+        return reject(stderr);
+      }
+      return resolve(stdout);
+    });
   });
-  return defer.promise;
 }
 
-module.exports = function(taskCallback) {
+module.exports = function(taskDone) {
   const assets = setup.assets;
 
   const execOpts = setup.plugins.exec;
@@ -31,15 +29,7 @@ module.exports = function(taskCallback) {
   const cmdUnset = [cmd, 'config', '--unset', 'vendor-dir'].join(' ');
 
   exec(cmdConfig, execOpts)
-    .then(() => {
-      return exec(cmdInstall, execOpts);
-    })
-    .then(() => {
-      return exec(cmdUnset, execOpts);
-    })
-    .fail((stderr) => {
-      taskCallback(stderr);
-      return Q.defer().promise;
-    })
-    .done(taskCallback);
+    .then(() => exec(cmdInstall, execOpts))
+    .then(() => exec(cmdUnset, execOpts))
+    .catch(taskDone);
 };

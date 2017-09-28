@@ -6,7 +6,7 @@ const httpProxy = require('http-proxy-middleware');
 const setup = require('setup/setup');
 
 module.exports = function() {
-  const browserSync = this.opts.browserSync;
+  const browserSync = this.context.browserSync;
 
   const browserSyncOpts = setup.plugins.browserSync;
   const connectPhpOpts = setup.plugins.gulpConnectPhp;

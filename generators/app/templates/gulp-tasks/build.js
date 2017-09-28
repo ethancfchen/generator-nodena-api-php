@@ -1,21 +1,20 @@
-const runSequence = require('run-sequence');
+const gulp = require('gulp');
 const gutil = require('gulp-util');
 const chalk = require('chalk');
 
 const setup = require('setup/setup');
 
-runSequence.options.ignoreUndefinedTasks = true;
+const tasks = [
+  'build:clean',
+  'build:composer',
+  'build:php',
+  'build:copy',
 
-module.exports = function() {
-  runSequence(
-    'build:clean',
-    'build:composer',
-    'build:php',
-    'build:copy',
+  setup.browserSync ? 'watch' : null,
+  setup.browserSync ? 'browserSync' : null,
+].filter((task) => Boolean(task));
 
-    setup.browserSync ? 'browserSync' : null,
-    setup.browserSync ? 'watch' : null,
-
-    () => gutil.log(chalk.green('Build Completed.'))
-  );
-};
+module.exports = gulp.series(tasks, (taskDone) => {
+  gutil.log(chalk.green('Build Completed.'));
+  taskDone();
+});
