@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 const $ = require('gulp-load-plugins')();
 const httpProxy = require('http-proxy-middleware');
 
@@ -14,7 +12,7 @@ module.exports = function() {
 
   const middleware = [];
 
-  _(proxyOpts.proxies).forEach((proxy) => {
+  (proxyOpts.proxies || []).forEach((proxy) => {
     middleware.push(httpProxy(proxy.uri, proxy.options));
   });
 
