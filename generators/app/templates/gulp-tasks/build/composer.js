@@ -31,5 +31,6 @@ module.exports = function(taskDone) {
   exec(cmdConfig, execOpts)
     .then(() => exec(cmdInstall, execOpts))
     .then(() => exec(cmdUnset, execOpts))
+    .then(taskDone)
     .catch(taskDone);
 };
