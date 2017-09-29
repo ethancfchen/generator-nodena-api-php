@@ -1,6 +1,6 @@
 {
   "name": "generator-nodena-api-php",
-  "version": "0.8.3",
+  "version": "0.9.0",
   "description": "Nodena API (PHP) Yeoman generator",
   "keywords": [
     "api",
