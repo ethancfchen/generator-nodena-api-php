@@ -508,6 +508,14 @@ chalk@^2.1.0:
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
 
+chalk@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.2.0.tgz#477b3bf2f9b8fd5ca9e429747e37f724ee7af240"
+  dependencies:
+    ansi-styles "^3.1.0"
+    escape-string-regexp "^1.0.5"
+    supports-color "^4.0.0"
+
 ci-info@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.0.0.tgz#dc5285f2b4e251821683681c381c3388f46ec534"
@@ -892,9 +900,9 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.8.0.tgz#229ef0e354e0e61d837c7a80fdfba825e199815e"
+eslint@^4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.9.0.tgz#76879d274068261b191fe0f2f56c74c2f4208e8b"
   dependencies:
     ajv "^5.2.0"
     babel-code-frame "^6.22.0"
@@ -1223,11 +1231,11 @@ generate-object-property@^1.1.0:
   dependencies:
     is-property "^1.0.0"
 
-generator-nodena@^0.7.4:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/generator-nodena/-/generator-nodena-0.7.4.tgz#ab2bcf9d31207b5af013f2a189df6f7e71fc7d10"
+generator-nodena@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/generator-nodena/-/generator-nodena-0.7.5.tgz#30589df2dab3e63bac1dcbbe4bba84ad99eab26e"
   dependencies:
-    chalk "^2.0.1"
+    chalk "^2.2.0"
     command-exists "^1.2.2"
     sort-package-json "^1.7.1"
     yeoman-generator "^2.0.1"
