@@ -62,64 +62,9 @@ Example:
 
 ```json
 {
-  "root": "cms/"
+  "root": "backend/"
 }
 ```
-
-### server
-
-Options for [BrowserSync][BrowserSync].
-
-Options:
-
-*   `port` - Default port. Default: `8888`.
-*   `https` - Enable self-signed SSL. Default: `false`.
-
-Example:
-
-```json
-{
-  "server": {
-    "port": 8888,
-    "https": true
-  }
-}
-```
-
-### proxy
-
-Default: `null`
-
-Assign proxy to [BrowserSync][BrowserSync].
-
-Options:
-
-*   `uri` - The URI path matching for proxy.
-*   `options` - The proxy options. See [options of proxy][node-http-proxy#options].
-
-Example:
-
-```json
-{
-  "proxy": [{
-    "uri": "/api",
-    "options": {
-      "target": "https://mydomain.com",
-      "changeOrigin": true,
-      "secure": false
-    }
-  }, {
-    "uri": "/upload",
-    "options": {
-      "target": "http://mydomain.com",
-      "changeOrigin": true
-    }
-  }]
-}
-```
-
-All requests on `/api` will proxy to `https://mydomain.com/api`,
-and `/upload` will proxy to `https://mydomain.com/upload`
 
 ### globals
 
@@ -176,123 +121,163 @@ Example:
 }
 ```
 
-### Environment Variable
+### localServer
 
-Override constants for different environments.
+Setup for launch a local server.
 
-Avaliable: `local`, `bypass`, `stage`, `live`.
+#### browserSync
+
+Options for [BrowserSync][BrowserSync].
 
 Options:
 
-*   `globals` - Override `globals` variables.
+*   `startPath` - Start path of server. Default: `config.root`.
+*   `server.baseDir` - Base directory of server. Default: `config.assets.build`.
+*   `server.index` - Default page. Default: `index.html`.
+*   `https` - Enable self-signed SSL. Default: `false`.
+
+See [other options of BrowserSync][browser-sync#options].
 
 Example:
 
-```json
-{
-  "stage": {
-    "globals": {
-      "php": {
-        "dbConnect": {
-          "dsn": "localhost",
-          "username": "root",
-          "password": "root"
-        }
-      }
-    }
-  },
-  "live": {
-    "globals": {
-      "php": {
-        "dbConnect": {
-          "dsn": "192.168.0.10",
-          "username": "root",
-          "password": "root"
-        }
-      }
-    }
+```javascript
+module.exports = {
+  localServer: {
+    browserSync: {
+      server: {
+        index: 'index.php',
+      },
+      https: true,
+    },
   }
-}
+};
 ```
 
-## Build/Publish
+#### php
 
-### Build For Developement
+Setup a [PHP server proxy][gulp-connect-php] for [BrowserSync][BrowserSync]
 
-Build the website and open live preview with [BrowserSync][BrowserSync].
+Options:
+
+*   `base` - Base directory of server. Default: `config.assets.build`.
+
+See [other options of PHP proxy][gulp-connect-php#options].
+
+#### proxy
+
+Assign proxies as middleware of [BrowserSync][BrowserSync].
+
+Options:
+
+*   `uri` - The URI path matching for proxy.
+*   `options` - The proxy options. See [options of proxy][node-http-proxy#options].
+
+Example:
+
+```javascript
+module.exports = {
+  localServer: {
+    proxy: [{
+      uri: '/api',
+      options: {
+        target: 'https://mydomain.com',
+        changeOrigin: true,
+        secure: false,
+      },
+    }, {
+      uri: '/upload',
+      options: {
+        target: 'http://mydomain.com',
+        changeOrigin: true,
+      },
+    }],
+  },
+};
+```
+
+All requests on `/api` will proxy to `https://mydomain.com/api`,
+and `/upload` will proxy to `https://mydomain.com/upload`
+
+## Gulp Tasks
+
+### Build
+
+#### Build for Developement
+
+Build and open live preview with [BrowserSync][BrowserSync].
 
 ```bash
-gulp
+NODE_ENV=development gulp
 ```
 
-### Build For Test/Debug in Published Environment (Bypass)
+#### Build for Stage
 
-Build the website and open live preview with [BrowserSync][BrowserSync].
+Build a distribution for stage, all files will generated in ```dist/stage/```.
 
 ```bash
-gulp bypass
+NODE_ENV=stage gulp
 ```
 
-### Publish For Stage Site
+#### Build for Production
 
-Build the website for stage,all files will generated in ```online/stage/```
-and create a version patch to ```online/patches/<version>```.
+Build a distribution for production, all files will generated in ```dist/production/```
 
 ```bash
-gulp stage
+NODE_ENV=production gulp
 ```
 
-### Publish For Live Site
+#### Build Options
 
-Build the website for stage, all files will generated in ```online/live/```
-and create a version patch to ```online/patches/<version>```.
+##### Verbose (default: false)
+
+Disable all compression and show detailed debug information on console.
 
 ```bash
-gulp live
+gulp -b
 ```
 
-### Options
-
-#### Version (default: prerelease/patch)
-
-Increace version number using [semver][semver].
-
-##### Prerelease (Only for stage) => 1.0.x-stage.x
-
-```bash
-gulp stage
-```
-
-##### Patch (Only for live)
-
-```bash
-gulp live
-```
-
-##### Minor (Only for live) => 1.x.0
-
-```bash
-gulp live -v minor
-```
-
-##### Major (Only for live) => x.0.0
-
-```bash
-gulp live -v major
-```
-
-##### Manually (Only for live)
-
-```bash
-gulp live -v 1.0.1
-```
-
-#### Port for BrowserSync (default: 8888)
+##### Port for BrowserSync (default: 8888)
 
 Manually assign the port of live preview.
 
 ```bash
-gulp -p 8899
+gulp -p 8889
+```
+
+### Helper
+
+#### Bump New Version
+
+Bump new [semver][semver] version number to `package.json` and create a git tag.
+
+##### Prerelease => 1.0.x-stage.x
+
+```bash
+gulp version --new-version prerelease --preid stage
+```
+
+##### Patch => 1.0.x
+
+```bash
+gulp version --new-version patch
+```
+
+##### Minor => 1.x.0
+
+```bash
+gulp version --new-version minor
+```
+
+##### Major => x.0.0
+
+```bash
+gulp version --new-version major
+```
+
+##### Manually
+
+```bash
+gulp version --new-version 1.2.3
 ```
 
 ## Change Log
@@ -307,6 +292,9 @@ gulp -p 8899
 [Node.js]: https://nodejs.org/
 [PHP]: http://php.net/
 [PHP_CodeSniffer]: http://pear.php.net/package/PHP_CodeSniffer/
+[browser-sync#options]: https://browsersync.io/docs/options
+[gulp-connect-php]: https://github.com/micahblu/gulp-connect-php
+[gulp-connect-php#options]: https://github.com/micahblu/gulp-connect-php#options
 [gulp-filter]: https://github.com/sindresorhus/gulp-filter/
 [gulp-preprocess]: https://github.com/jas/gulp-preprocess/
 [gulp-task-loader]: https://github.com/hontas/gulp-task-loader/

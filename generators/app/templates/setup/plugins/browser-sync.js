@@ -1,5 +1,5 @@
 const config = require('config');
-const argv = require('../argv');
+const _ = require('lodash');
 
 /**
  * Plugin Setup: Browsersync
@@ -16,21 +16,13 @@ const argv = require('../argv');
  */
 class PluginBrowserSync {
   constructor() {
-    const server = config.server || {};
-    const port = argv.port || server.port;
-    const isHttps = server.https;
+    const localServer = config.localServer || {};
+    const browserSync = localServer.browserSync || {};
 
-    this.port = port;
-    this.https = isHttps;
-    this.ui = {
-      port: port + 2,
-    };
-    this.open = false;
-
-    if (!port) {
-      delete this.port;
-      delete this.ui.port;
-    }
+    _.merge(this, {
+      https: false,
+      open: false,
+    }, browserSync);
   }
 }
 

@@ -1,5 +1,6 @@
 const config = require('config');
-const argv = require('../argv');
+
+const _ = require('lodash');
 
 /**
  * Plugin Setup: gulp-connect-php
@@ -14,12 +15,12 @@ const argv = require('../argv');
  */
 class PluginGulpConnectPhp {
   constructor() {
-    const server = config.server || {};
-    const port = argv.port || server.port;
+    const localServer = config.localServer || {};
+    const php = localServer.php || {};
 
-    this.port = port + 1;
-    this.base = config.assets.build;
-    this.ini = config.assets.phpIni;
+    _.merge(this, {
+      base: config.assets.build,
+    }, php);
   }
 }
 

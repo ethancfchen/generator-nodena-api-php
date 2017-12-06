@@ -7,10 +7,6 @@ const argv = require('../setup/argv');
 
 module.exports = {
   root: 'api',
-  server: {
-    port: argv.port || 8888,
-    https: false,
-  },
   proxy: [],
   globals: {
     php: {},
@@ -21,6 +17,7 @@ module.exports = {
     },
   },
   copy: [],
+  localServer: false,
 
   /* Helper */
 
@@ -57,7 +54,6 @@ module.exports = {
       ],
       dest: 'doc',
     },
-    phpIni: './php.ini',
 
     composerLock: 'composer.lock',
     manifest: 'package.json',

@@ -1,12 +1,23 @@
-const defer = require('config/defer').deferConfig;
+const argv = require('../setup/argv');
+
+const serverPort = argv.port || 8888;
 
 module.exports = {
-  domain: defer((config) => {
-    return 'http://localhost:' + config.server.port;
-  }),
+  domain: `http://localhost:${serverPort}`,
+  localServer: {
+    browserSync: {
+      port: serverPort,
+      ui: {
+        port: serverPort + 2,
+      },
+    },
+    php: {
+      port: serverPort + 1,
+      ini: './php.ini',
+    },
+  },
 
   /* Helper */
 
   isOnline: false,
-  browserSync: true,
 };
