@@ -11,8 +11,8 @@
     "gulp-if": "^2.0.2",
     "gulp-plumber": "^1.2.0",
     "gulp-preprocess": "^2.0.0",
-    "gulp-util": "^3.0.8",
     "http-proxy-middleware": "^0.17.4",
-    "merge-stream": "^1.0.1"
+    "merge-stream": "^1.0.1",
+    "through2": "^2.0.3"
   }
 }
