@@ -11,9 +11,6 @@ const ASSETS = {
     src: 'config/**/*',
     dest: 'config',
   }, {
-    src: 'setup/**/*',
-    dest: 'setup',
-  }, {
     src: 'gulp-tasks/**/*',
     dest: 'gulp-tasks',
   }],
