@@ -19,15 +19,7 @@
 ## File Structure
 
 | File/Directory              | Description                                                 |
-|-----------------------------|-------------------------------------------------------------|
-| `setup/`                    | Project setup helpers                                       |
-| `setup/base/`               | Project setup base                                          |
-| `setup/base/assets.js`      | Project base asset                                          |
-| `setup/base/plugins.js`     | Project base plugin setup details                           |
-| `setup/plugins/`            | Project plugin setup details                                |
-| `setup/assets.js`           | Extended project assets                                     |
-| `setup/plugins.js`          | Extended project plugin setups                              |
-| `setup/setup.js`            | Main setup helpers                                          |
+| --------------------------- | ----------------------------------------------------------- |
 | `gulp-tasks/`               | [Gulp][Gulp] task definitions                               |
 | `src/`                      | Source files                                                |
 | `res/`                      | Resources, including docs, sql, etc.                        |
@@ -46,11 +38,12 @@
 | `gulptasks.js`              | Custom task loader for [gulp-task-loader][gulp-task-loader] |
 | `package.json`              | Project meta information                                    |
 | `composer.json`             | [Composer][Composer] dependency information                 |
-| `setup.json`                | Project setup variables                                     |
 | `README.md`                 | This readme file                                            |
 | `CHANGELOG.md`              | Auto generated change log                                   |
 
-## Environment Setup (`setup.json`)
+## Environment Setup (`config/*`)
+
+See [documents of `node-config`][node-config] for more information.
 
 ### root
 
@@ -298,6 +291,7 @@ gulp version --new-version 1.2.3
 [gulp-filter]: https://github.com/sindresorhus/gulp-filter/
 [gulp-preprocess]: https://github.com/jas/gulp-preprocess/
 [gulp-task-loader]: https://github.com/hontas/gulp-task-loader/
+[node-config]: https://github.com/lorenwest/node-config/
 [node-http-proxy#options]: https://github.com/nodejitsu/node-http-proxy#options
 [npm-url]: https://npmjs.org/package/generator-nodena-api-php/
 [semver]: https://github.com/npm/node-semver/
