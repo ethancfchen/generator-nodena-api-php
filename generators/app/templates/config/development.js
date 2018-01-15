@@ -1,18 +1,16 @@
-const argv = require('../setup/argv');
-
-const serverPort = argv.port || 8888;
+const SERVER_PORT = 8888;
 
 module.exports = {
-  domain: `http://localhost:${serverPort}`,
+  domain: `http://localhost:${SERVER_PORT}`,
   localServer: {
     browserSync: {
-      port: serverPort,
+      port: SERVER_PORT,
       ui: {
-        port: serverPort + 2,
+        port: SERVER_PORT + 2,
       },
     },
     php: {
-      port: serverPort + 1,
+      port: SERVER_PORT + 1,
       ini: './php.ini',
     },
   },

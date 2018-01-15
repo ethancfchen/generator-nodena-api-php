@@ -1,36 +1,75 @@
+const fs = require('fs');
+const _ = require('lodash');
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 const through = require('through2');
+const config = require('config');
 
-const _ = require('lodash');
+const ASSETS = {
+  manifest: 'package.json',
+};
 
-const setup = require('setup/setup');
+function getVersion() {
+  const assets = config.assets;
+  const file = assets.manifest || ASSETS.manifest;
+  const content = fs.readFileSync(file, 'utf8');
+  const manifest = JSON.parse(content);
+  return manifest.version;
+}
 
 function noop() {
   return through.obj();
 }
 
+function getFilterOptions() {
+  return ((config.preprocess || {}).filter || {}).php;
+}
+
+function getPreprocessOptions() {
+  const globals = (config.globals || {}).php;
+  const options = {};
+  const defaults = {
+    context: {
+      ENV: config.env,
+      VERSION: getVersion(),
+      DOMAIN: config.domain,
+    },
+  };
+
+  _.merge(defaults.context, globals);
+  _.merge(options, defaults);
+  if (!globals) {
+    return false;
+  }
+  return options;
+}
+
+function getOptions() {
+  return {
+    filter: getFilterOptions(),
+    preprocess: getPreprocessOptions(),
+  };
+}
+
 module.exports = function() {
   const browserSync = this.context.browserSync;
 
-  const assets = setup.assets;
+  const assets = config.assets;
 
   const src = assets.src.php;
-  const dest = setup.root;
+  const dest = config.root;
 
-  const preprocessOpts = setup.plugins.gulpPreprocess;
+  const options = getOptions();
+  const isPreprocess = !_.isEmpty(options.preprocess);
 
-  const phpData = (setup.globals || {}).php;
-  const isPreprocess = !_.isEmpty(phpData);
-  const filterOpts = preprocessOpts.filter.php;
-  const $filter = filterOpts ? $.filter(filterOpts, {restore: true}) : noop();
-  const $filterRestore = filterOpts ? $filter.restore : noop();
-
-  preprocessOpts.context = _.merge(preprocessOpts.context, phpData);
+  const $filter = options.filter ?
+    $.filter(options.filter, {restore: true}) : noop();
+  const $filterRestore = options.filter ?
+    $filter.restore : noop();
 
   return gulp.src(src, {cwd: assets.base.src})
     .pipe($.if(isPreprocess, $filter))
-    .pipe($.if(isPreprocess, $.preprocess(preprocessOpts)))
+    .pipe($.if(isPreprocess, $.preprocess(options.preprocess)))
     .pipe($.if(isPreprocess, $filterRestore))
     .pipe(gulp.dest(dest, {cwd: assets.build}))
     .pipe(browserSync.stream());

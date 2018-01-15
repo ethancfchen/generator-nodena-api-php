@@ -1,7 +1,8 @@
 const childProcess = require('child_process');
 const path = require('path');
+const config = require('config');
 
-const setup = require('setup/setup');
+const MAX_BUFFER = 1024 * 1024;
 
 function exec(command) {
   const run = childProcess.exec;
@@ -16,21 +17,23 @@ function exec(command) {
 }
 
 module.exports = function(taskDone) {
-  const assets = setup.assets;
+  const assets = config.assets;
 
-  const execOpts = setup.plugins.exec;
-
-  const vendorDir = path.join(assets.build, setup.root, assets.vendor);
+  const vendorDir = path.join(assets.build, config.root, assets.vendor);
 
   const cmd = 'composer';
   const cmdConfig = [cmd, 'config', 'vendor-dir', vendorDir].join(' ');
   const cmdInstall = [cmd, 'install']
-    .concat(setup.isOnline ? ['--no-dev', '-o'] : ['--dev']).join(' ');
+    .concat(config.isOnline ? ['--no-dev', '-o'] : ['--dev']).join(' ');
   const cmdUnset = [cmd, 'config', '--unset', 'vendor-dir'].join(' ');
 
-  exec(cmdConfig, execOpts)
-    .then(() => exec(cmdInstall, execOpts))
-    .then(() => exec(cmdUnset, execOpts))
+  const options = {
+    maxBuffer: MAX_BUFFER,
+  };
+
+  exec(cmdConfig, options)
+    .then(() => exec(cmdInstall, options))
+    .then(() => exec(cmdUnset, options))
     .then(taskDone)
     .catch(taskDone);
 };
