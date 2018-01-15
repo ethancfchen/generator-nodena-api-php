@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const $ = require('gulp-load-plugins')();
 const httpProxyMiddleware = require('http-proxy-middleware');
 const config = require('config');
 
@@ -11,17 +12,26 @@ function getMiddlewares() {
   return middlewares;
 }
 
-function getProxyOptions() {
+function getConnectPhpOptions() {
   const localServer = config.localServer || {};
   const connectPhp = localServer.php;
   const options = {};
   const defaults = {
     base: config.assets.build,
+  };
+
+  _.merge(options, defaults, connectPhp);
+  return options;
+}
+
+function getProxyOptions() {
+  const localServer = config.localServer || {};
+  const connectPhp = localServer.php;
+  const options = {
     target: '0.0.0.0:' + connectPhp.port,
     middleware: getMiddlewares(),
   };
 
-  _.merge(options, defaults, connectPhp);
   return options;
 }
 
@@ -41,7 +51,10 @@ function getOptions() {
 
 module.exports = function(taskDone) {
   const localServer = this.context.localServer;
+  const connectPhpOptions = getConnectPhpOptions();
   const options = getOptions();
+
+  $.connectPhp.server(connectPhpOptions);
   localServer.init(options);
   taskDone();
 };
