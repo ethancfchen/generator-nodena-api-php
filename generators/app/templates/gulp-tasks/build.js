@@ -10,7 +10,7 @@ const tasks = [
   'build:copy',
 
   config.localServer ? 'watch' : null,
-  config.localServer ? 'browserSync' : null,
+  config.localServer ? 'localServer' : null,
 ].filter((task) => Boolean(task));
 
 module.exports = gulp.series(tasks, (taskDone) => {
